@@ -1,10 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
-
-    * {
-    box-sizing: border-box;
-    }
+const GlobalStyles = createGlobalStyle`
 
     :root {
         //Theme 1
@@ -115,20 +111,6 @@ const GlobalStyle = createGlobalStyle`
             else return 'var(--t3-text-white)'
         }};
     }
-
-    html,
-    body,
-    body > div {
-        min-height: 100vh;
-    }
-
-    body {
-        font-family: 'League Spartan', sans-serif;
-        font-weight: 700;
-        margin: 0;
-        color: var(--text-white);
-        background-color: var(--main-bg);
-    }
 `
 
-export default GlobalStyle
+export default GlobalStyles

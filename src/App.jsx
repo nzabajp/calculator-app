@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import GlobalStyle from './components/globalStyles'
+import GlobalStyles from './components/globalStyles'
 import Header from './components/Header'
 
 const App = () => {
@@ -31,7 +31,9 @@ const App = () => {
 
   const toggleSigns = (event) => {
     const {innerText} = event.target
-    setDisplay(prevDisplay => `${prevDisplay} ${innerText} `)
+    setDisplay(prevDisplay => {
+      return `${prevDisplay} ${innerText === 'x' ? '*' : innerText} `
+    })
   }
 
   const toggleDecimal = (event) => {
@@ -55,9 +57,24 @@ const App = () => {
     setDisplay([Math.round(sumFiltered * 10000)/10000])
   }
 
+  const toggleDelete = () => {
+    setDisplay(prevDisplay => {
+      if(typeof display === "string") {
+        return prevDisplay.trimEnd().slice(0, -1)
+      } else {
+        return prevDisplay.join("").slice(0, -1)
+      }
+    })
+  }
+
+  useEffect(() => {
+    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+    setSwitchPos(isDarkMode ? 1 : 2)
+  }, [])
+
   return (
     <div className="app">
-      <GlobalStyle switchPos={switchPos} />
+      <GlobalStyles switchPos={switchPos} />
       <div className='calculator'>
         <Header 
           switchPos={switchPos}
@@ -70,7 +87,7 @@ const App = () => {
           <div id="clear" className='clear' onClick={() => setDisplay(initialDisplay)}>
             RESET
           </div>
-          <div id='del' className='del'>
+          <div id='del' className='del' onClick={toggleDelete}>
             DEL
           </div>
           <div id="divide" className='divide' onClick={toggleSigns}>
@@ -123,12 +140,12 @@ const App = () => {
           </div>
         </div>
       </div>
-      {/* <p className='footer'>
+      <p className='footer'>
         Made with <i className="fa-solid fa-heart" /> by <a 
-          href="https://github.com/nzabajp" target="_blank" rel="noreferrer">
+          href="https://nzabajp.github.io/" target="_blank" rel="noreferrer">
           /nzabajp
           </a>
-      </p> */}
+      </p>
     </div>
   );
 }
