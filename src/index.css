@@ -48,7 +48,12 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 3rem;
   font-weight: 700;
-  overflow: hidden;
+  overflow: hidden scroll;
+}
+.display p {
+  overflow: scroll hidden;
+  scroll-snap-align: start;
+  margin: 0;
 }
 .buttons {
   /* height: 75%; */
@@ -79,6 +84,7 @@ body {
   color: var(--text-dark);
   box-shadow: 0px 3px 0px 0px var(--key3-shadow);
   aspect-ratio: 1/1;
+  cursor: pointer;
 }
 .clear {
   background-color: var(--key1-bg) !important;

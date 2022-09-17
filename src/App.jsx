@@ -81,7 +81,9 @@ const App = () => {
           toggleSwitch={toggleSwitch}
         />
         <div id="display" className='display'>
+          <p>
           {display}
+          </p>
         </div>
         <div className='buttons'>
           <div id="clear" className='clear' onClick={() => setDisplay(initialDisplay)}>
