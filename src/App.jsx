@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import GlobalStyles from './components/globalStyles'
 import Header from './components/Header'
@@ -9,6 +9,8 @@ const App = () => {
 
   const [display, setDisplay] = useState(initialDisplay)
   const [switchPos, setSwitchPos] = useState(1)
+  const displayElement = useRef(null)
+  const displayContainer = useRef(null)
 
   const toggleSwitch = () => {
     setSwitchPos(prevPos => {
@@ -72,6 +74,13 @@ const App = () => {
     setSwitchPos(isDarkMode ? 1 : 2)
   }, [])
 
+  useEffect(() => {
+    const elementWidth = displayElement.current.scrollWidth
+    displayElement.current.scroll({left: elementWidth})
+    const containerHeight = displayContainer.current.scrollHeight
+    displayContainer.current.scroll({top: containerHeight})
+  })
+
   return (
     <div className="app">
       <GlobalStyles switchPos={switchPos} />
@@ -80,8 +89,8 @@ const App = () => {
           switchPos={switchPos}
           toggleSwitch={toggleSwitch}
         />
-        <div id="display" className='display'>
-          <p>
+        <div id="display" className='display' ref={displayContainer}>
+          <p ref={displayElement}>
           {display}
           </p>
         </div>

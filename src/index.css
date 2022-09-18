@@ -28,11 +28,9 @@ body {
   height: 100vh;
 }
 .calculator {
-  /* border: 1px solid red; */
   width: 90%;
   max-width: 400px;
   aspect-ratio: 1/1.9;
-  /* height: 60%; */
 }
 .display {
   height: 90px;
@@ -52,18 +50,16 @@ body {
 }
 .display p {
   overflow: scroll hidden;
-  scroll-snap-align: start;
+  text-align: end;
   margin: 0;
 }
 .buttons {
-  /* height: 75%; */
   padding: 1em;
   margin: auto;
   margin-top: 1.8em;
   display: grid;
   gap: .8em;
   grid-template-columns: repeat(4, 1fr);
-  /* grid-template-rows: repeat(5, 1fr); */
   grid-template-areas: 
     "seven eight nine delete"
     "four five six add"
